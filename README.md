@@ -7,7 +7,7 @@ Minimal docker container based Jupyter lab/hub/notebook, provisioned resource vi
 - Git: [bitbucket tutorial](https://www.atlassian.com/git/tutorials/install-git) or [main site](https://git-scm.com/downloads)
 
 ### Core Dependencies
-- docker-compose-templer: [github site](https://github.com/Aisbergg/python-docker-compose-templer)
+- docker-compose-templer: [aisbergg/python-docker-compose-templer](https://github.com/Aisbergg/python-docker-compose-templer)
 
 ### Usage
 - 1. Clone this repository to your machine, export path for availability of `jupytent` command
