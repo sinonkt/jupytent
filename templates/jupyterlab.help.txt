@@ -1,0 +1,175 @@
+JupyterLab - An extensible computational environment for Jupyter.
+
+This launches a Tornado based HTML Server that serves up an HTML5/Javascript
+JupyterLab client.
+
+JupyterLab has three different modes of running:
+
+* Core mode (`--core-mode`): in this mode JupyterLab will run using the JavaScript
+  assets contained in the installed `jupyterlab` Python package. In core mode, no
+  extensions are enabled. This is the default in a stable JupyterLab release if you
+  have no extensions installed.
+* Dev mode (`--dev-mode`): uses the unpublished local JavaScript packages in the
+  `dev_mode` folder.  In this case JupyterLab will show a red stripe at the top of
+  the page.  It can only be used if JupyterLab is installed as `pip install -e .`.
+* App mode: JupyterLab allows multiple JupyterLab "applications" to be
+  created by the user with different combinations of extensions. The `--app-dir` can
+  be used to set a directory for different applications. The default application
+  path can be found using `jupyter lab path`.
+
+Subcommands
+===========
+Subcommands are launched as `jupyter-notebook cmd [args]`. For information on
+using subcommand 'cmd', do: `jupyter-notebook cmd -h`.
+
+build
+clean
+path
+paths
+workspace
+workspaces
+
+Options
+=======
+The options below are convenience aliases to configurable class-options,
+as listed in the "Equivalent to" description-line of the aliases.
+To see all configurable class-options for some <cmd>, use:
+    <cmd> --help-all
+
+--debug
+    set log level to logging.DEBUG (maximize logging output)
+    Equivalent to: [--Application.log_level=10]
+--generate-config
+    generate default config file
+    Equivalent to: [--JupyterApp.generate_config=True]
+-y
+    Answer yes to any questions instead of prompting.
+    Equivalent to: [--JupyterApp.answer_yes=True]
+--no-browser
+    Don't open the notebook in a browser after startup.
+    Equivalent to: [--NotebookApp.open_browser=False]
+--pylab
+    DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.
+    Equivalent to: [--NotebookApp.pylab=warn]
+--no-mathjax
+    Disable MathJax
+    
+    MathJax is the javascript library Jupyter uses to render math/LaTeX. It is
+    very large, so you may want to disable it if you have a slow internet
+    connection, or for offline use of the notebook.
+    
+    When disabled, equations etc. will appear as their untransformed TeX source.
+    Equivalent to: [--NotebookApp.enable_mathjax=False]
+--allow-root
+    Allow the notebook to be run from root user.
+    Equivalent to: [--NotebookApp.allow_root=True]
+--autoreload
+    Autoreload the webapp
+    
+    Enable reloading of the tornado webapp and all imported Python packages
+    when any changes are made to any Python src files in Notebook or
+    extensions.
+    Equivalent to: [--NotebookApp.autoreload=True]
+--script
+    DEPRECATED, IGNORED
+    Equivalent to: [--FileContentsManager.save_script=True]
+--no-script
+    DEPRECATED, IGNORED
+    Equivalent to: [--FileContentsManager.save_script=False]
+--core-mode
+    Start the app in core mode.
+    Equivalent to: [--LabApp.core_mode=True]
+--dev-mode
+    Start the app in dev mode for running from source.
+    Equivalent to: [--LabApp.dev_mode=True]
+--watch
+    Start the app in watch mode.
+    Equivalent to: [--LabApp.watch=True]
+--expose-app-in-browser
+    Expose the global app instance to browser via window.jupyterlab
+    Equivalent to: [--LabApp.expose_app_in_browser=True]
+--log-level=<Enum>
+    Set the log level by value or name.
+    Choices: any of [0, 10, 20, 30, 40, 50, 'DEBUG', 'INFO', 'WARN', 'ERROR', 'CRITICAL']
+    Default: 30
+    Equivalent to: [--Application.log_level]
+--config=<Unicode>
+    Full path of a config file.
+    Default: ''
+    Equivalent to: [--JupyterApp.config_file]
+--ip=<Unicode>
+    The IP address the notebook server will listen on.
+    Default: 'localhost'
+    Equivalent to: [--NotebookApp.ip]
+--port=<Int>
+    The port the notebook server will listen on (env: JUPYTER_PORT).
+    Default: 8888
+    Equivalent to: [--NotebookApp.port]
+--port-retries=<Int>
+    The number of additional ports to try if the specified port is not available
+    (env: JUPYTER_PORT_RETRIES).
+    Default: 50
+    Equivalent to: [--NotebookApp.port_retries]
+--sock=<Unicode>
+    The UNIX socket the notebook server will listen on.
+    Default: ''
+    Equivalent to: [--NotebookApp.sock]
+--sock-mode=<Unicode>
+    The permissions mode for UNIX socket creation (default: 0600).
+    Default: '0600'
+    Equivalent to: [--NotebookApp.sock_mode]
+--transport=<CaselessStrEnum>
+    Choices: any of ['tcp', 'ipc'] (case-insensitive)
+    Default: 'tcp'
+    Equivalent to: [--KernelManager.transport]
+--keyfile=<Unicode>
+    The full path to a private key file for usage with SSL/TLS.
+    Default: ''
+    Equivalent to: [--NotebookApp.keyfile]
+--certfile=<Unicode>
+    The full path to an SSL/TLS certificate file.
+    Default: ''
+    Equivalent to: [--NotebookApp.certfile]
+--client-ca=<Unicode>
+    The full path to a certificate authority certificate for SSL/TLS client
+    authentication.
+    Default: ''
+    Equivalent to: [--NotebookApp.client_ca]
+--notebook-dir=<Unicode>
+    The directory to use for notebooks and kernels.
+    Default: ''
+    Equivalent to: [--NotebookApp.notebook_dir]
+--browser=<Unicode>
+    Specify what command to use to invoke a web browser when opening the
+    notebook. If not specified, the default browser will be determined by the
+    `webbrowser` standard library module, which allows setting of the BROWSER
+    environment variable to override it.
+    Default: ''
+    Equivalent to: [--NotebookApp.browser]
+--pylab=<Unicode>
+    DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.
+    Default: 'disabled'
+    Equivalent to: [--NotebookApp.pylab]
+--gateway-url=<Unicode>
+    The url of the Kernel or Enterprise Gateway server where kernel
+    specifications are defined and kernel management takes place. If defined,
+    this Notebook server acts as a proxy for all kernel management and kernel
+    specification retrieval.  (JUPYTER_GATEWAY_URL env var)
+    Default: None
+    Equivalent to: [--GatewayClient.url]
+--app-dir=<Unicode>
+    The app directory to launch JupyterLab from.
+    Default: '/Users/aqua/miniconda3/envs/jupyterlab/share/jupyter/lab'
+    Equivalent to: [--LabApp.app_dir]
+
+Examples
+--------
+
+    jupyter lab                       # start JupyterLab
+    jupyter lab --dev-mode            # start JupyterLab in development mode, with no extensions
+    jupyter lab --core-mode           # start JupyterLab in core mode, with no extensions
+    jupyter lab --app-dir=~/myjupyterlabapp # start JupyterLab with a particular set of extensions
+    jupyter lab --certfile=mycert.pem # use SSL/TLS certificate
+
+To see all available configurables, use `--help-all`.
+

@@ -1,0 +1,30 @@
+# should be the same as stack directory name.
+stack_name: example
+
+readonly_dir_path: ../../readonly
+
+share_dir_path: ../../share
+
+publish_dir_path: ../../publish
+
+extra_nbextensions_path: ../../extensions
+
+root_data_dir_path: ../../data
+
+users:
+  - name: oat
+    id: 1001
+    image: jupyter/base-notebook:lab-2.2.8 
+    port: 38801
+    ssh_port: 32201
+    password: "sha1:94eea1e31509:6208eb5db7507720b698a2633ab7dc10aeaa5406"
+    public_key: >
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC455yc3FNFk3VFEbnmwVt4xDvuO6fXkFC5b0h05EOb4CDRqeemOajghPSmqJXDwcPTls/yCHwIwrd6M3NVbAMh5EoAR6bH+9srWY2w4T1xbDLOd/IziUh5kwn6MSUc5+kl2lN2fjySeKZmp64OqedyACz8DJd7ORQOgQbfR6Y+8oLhQ3/QtrBYkGd1ZEuQfjqnWVF5VIL3lfVX2xprsg6JPXAlgWs34QdUbas58LsSftXRNInbzHcqpkzJl5u1WLMxXNldoPwvLuMqPYrzkikabg2xhhrTNJb0Ul2AU8tWskX5O30iVHfSvrNpCLViG2y+gqA0CFLugKy15HtoCuM7 krittin@inox.co.th
+  - name: chics
+    id: 1002
+    image: jupyter/base-notebook:lab-2.2.8 
+    port: 38802
+    ssh_port: 32202
+    password: "sha1:c6a308fc159f:b622577c635e6fda7d8c66248c3fd08574738364"
+    public_key: >
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC455yc3FNFk3VFEbnmwVt4xDvuO6fXkFC5b0h05EOb4CDRqeemOajghPSmqJXDwcPTls/yCHwIwrd6M3NVbAMh5EoAR6bH+9srWY2w4T1xbDLOd/IziUh5kwn6MSUc5+kl2lN2fjySeKZmp64OqedyACz8DJd7ORQOgQbfR6Y+8oLhQ3/QtrBYkGd1ZEuQfjqnWVF5VIL3lfVX2xprsg6JPXAlgWs34QdUbas58LsSftXRNInbzHcqpkzJl5u1WLMxXNldoPwvLuMqPYrzkikabg2xhhrTNJb0Ul2AU8tWskX5O30iVHfSvrNpCLViG2y+gqA0CFLugKy15HtoCuM7 krittin@inox.co.th

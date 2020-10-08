@@ -1,0 +1,48 @@
+{% set development = development|default(false) %}
+{% set deployment_name = deployment_name|default('mariadb') %}
+
+version: '3.7'
+
+services:
+  {{ deployment_name }}:
+    # https://hub.docker.com/r/bitnami/mariadb/
+    image: bitnami/mariadb:10.2.21
+    environment:
+      - "MARIADB_PORT_NUMBER=3306"
+      - "MARIADB_ROOT_PASSWORD={{ MYSQL_ROOT_PASSWORD|mandatory('MYSQL_ROOT_PASSWORD must be defined') }}"
+      - "MARIADB_ROOT_USER=root"
+    networks:
+    {% for network in stacks|default([]) %}
+      {{ network }}_mariadb:
+        aliases:
+          - mariadb
+          - mariadb.{{ stack_name }}.docker
+          - mysql
+          - mysql.{{ stack_name }}.docker
+    {% endfor %}
+    user: "999"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "{{ base_volume_dir|mandatory }}/{{ stack_name }}/{{ deployment_name }}:/bitnami/mariadb"
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.platform.os == linux]
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 2000MB
+      update_config:
+        parallelism: 1
+        delay: 10m
+
+networks:
+{% for network in stacks|default([]) %}
+  {{ network }}_mariadb:
+    name: {{ network }}_mariadb
+    driver: overlay
+    attachable: true
+{% endfor %}

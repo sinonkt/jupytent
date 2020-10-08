@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  {% for user in users|default([]) %}
+  {{ user.name }}:
+    image: {{ user.image }}
+    user: root
+    command: >
+      bash -c "{{ init_script }}
+      && echo -e 'envs_dirs:\n - /home/{{ user.name }}/envs' > /home/{{ user.name }}/.condarc
+      && echo -e 'source /opt/conda/etc/profile.d/conda.sh' > /home/{{ user.name }}/.bash_profile
+      && mkdir -p /home/{{ user.name }}/.ssh && chmod 700 /home/{{ user.name }}/.ssh
+      && echo -e '{{ admin_public_key }}\n{{ user.public_key }}' > /home/{{ user.name }}/.ssh/authorized_keys
+      && chmod 600 /home/{{ user.name }}/.ssh/authorized_keys
+      && start.sh jupyter lab \
+        --LabApp.allow_origin='*' \
+        --LabApp.ip='0.0.0.0' \
+        --LabApp.password_required=True \
+        --LabApp.password={{ user.password }} \
+        --LabApp.extra_nbextensions_path={{ extra_nbextensions_path }} \
+        --LabApp.allow_remote_access=True"
+    environment:
+      - "NB_USER={{ user.name }}"
+      - "NB_UID={{ user.id }}"
+      - "JUPYTER_ENABLE_LAB=yes"
+      - "CHOWN_HOME=yes"
+      - "RESTARTABLE=yes"
+    ports:
+      - "{{ user.port }}:8888"
+    volumes:
+      - {{ root_data_dir_path }}/{{ user.name }}/work:/home/{{ user.name }}/work
+      - {{ root_data_dir_path }}/{{ user.name }}/envs:/home/{{ user.name }}/envs
+      - {{ root_data_dir_path }}/{{ user.name }}/kernels:/home/{{ user.name }}/.local
+      - {{ readonly_dir_path }}:/home/{{ user.name }}/readonly
+      - {{ share_dir_path }}:/home/{{ user.name }}/share
+      - {{ publish_dir_path }}:/home/{{ user.name }}/publish
+  {% endfor %}

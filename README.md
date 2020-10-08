@@ -37,6 +37,11 @@ Minimal docker container based Jupyter lab/hub/notebook, provisioned resource vi
   ```
   ./bin/jupytent update lab1
   ```
+### Jupyter docker stacks
+[Selecting an Image](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html)
+
+### Alternatives
+JupyterHub ([Official](https://github.com/jupyterhub/jupyterhub),[with kubernetes](https://zero-to-jupyterhub.readthedocs.io/en/latest/#setup-jupyterhub),[pdf](https://github.com/jupyterhub/jupyterhub-tutorial/blob/master/JupyterHub.pdf))
 
 ### Contributors
   - Krittin Phornsiricharoenphant, oatkrittin@gmail.com
