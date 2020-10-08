@@ -1,5 +1,5 @@
 # Jupytent (Jupy-tent)
-minimal docker container based Jupyter lab/hub/notebook, provisioned resource via docker-compose.
+Minimal docker container based Jupyter lab/hub/notebook, provisioned resource via docker-compose.
 
 ### Prerequisite
 - Docker for Mac / Docker for Windows: [Official site](https://www.docker.com/products/docker-desktop)
