@@ -10,24 +10,24 @@ Minimal docker container based Jupyter lab/hub/notebook, provisioned resource vi
 - docker-compose-templer: [aisbergg/python-docker-compose-templer](https://github.com/Aisbergg/python-docker-compose-templer)
 
 ### Usage
-- 1. Clone this repository to your machine, export path for availability of `jupytent` command
+1. Clone this repository to your machine, export path for availability of `jupytent` command
   ```
   git clone https://github.com/sinonkt/jupytent.git
   cd jupytent
   ```
-- 2. Create your new jupter instances stack, by copying from `./stacks/example.yml`
+2. Create your new jupter instances stack, by copying from `./stacks/example.yml`
   ```
   cp ./stacks/example.yml ./stacks/lab1.yml
   ```
-- 3. Adjust number of users or resources provided for each instance as you like.
+3. Adjust number of users or resources provided for each instance as you like.
   ```
   <definition yml lies here>
   ```
-- 4. Generate your new stack configs. `Need to regenerate stack configs every time we've changes`
+4. Generate your new stack configs. `Need to regenerate stack configs every time we've changes`
   ```
   ./bin/jupytent generate lab1
   ```
-- 5. Then run our stack by.
+5. Then run our stack by.
   ```
   ./bin/jupytent up lab1
   ```
